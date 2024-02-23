@@ -14,6 +14,4 @@ public class UserReq {
     private String surname;
     @NotBlank(message = "password required")
     private String password;
-    @NotBlank(message = "role required")
-    private Role role;
 }

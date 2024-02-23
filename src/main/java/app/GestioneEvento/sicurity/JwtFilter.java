@@ -31,13 +31,9 @@ public class JwtFilter extends OncePerRequestFilter {
         if(authorization==null||!authorization.startsWith("Bearer ")){
             throw new UnAuthorizedException("Token non presente");
         }
-
         String token = authorization.substring(7);
-
         jwtTools.validateToken(token);
-
         String username = jwtTools.extractUsernameFromToken(token);
-
         User user = null;
         try {
             user = userSvc.getUserByUserName(username);
@@ -47,7 +43,6 @@ public class JwtFilter extends OncePerRequestFilter {
 
         UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(user,
                 null,user.getAuthorities());
-        System.out.println(authorization);
         SecurityContextHolder.getContext().setAuthentication(authentication);
         filterChain.doFilter(request,response);
 
@@ -57,7 +52,6 @@ public class JwtFilter extends OncePerRequestFilter {
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
         String servletPath = request.getServletPath();
         AntPathMatcher pathMatcher = new AntPathMatcher();
-
         return pathMatcher.match("/auth/**",servletPath);
     }
 }
