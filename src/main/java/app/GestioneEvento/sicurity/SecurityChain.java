@@ -27,7 +27,7 @@ public class SecurityChain {
         httpSecurity.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
         httpSecurity.authorizeHttpRequests(req-> req.requestMatchers("/auth/**").permitAll());
-        httpSecurity.authorizeHttpRequests(req-> req.requestMatchers("/user/**").permitAll());
+        httpSecurity.authorizeHttpRequests(req-> req.requestMatchers("/user/**").hasAuthority(Role.CLIENT.name()));
         httpSecurity.authorizeHttpRequests(req-> req.requestMatchers("/event/**").hasAuthority(Role.ADMIN.name()));
         return httpSecurity.build();
     }

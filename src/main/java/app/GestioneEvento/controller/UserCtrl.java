@@ -61,7 +61,6 @@ public class UserCtrl {
             return CustomResponse.failure(e.getMessage(),HttpStatus.NOT_FOUND);
         }
     }
-
 }
 
 
