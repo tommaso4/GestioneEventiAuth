@@ -17,19 +17,11 @@ public class Event {
     private String description;
     private LocalDate date;
     private String location;
-    private int nrPlace;
-    private List<Integer> postiDisponibili;
+    private Integer nrPlace;
     @ManyToMany(mappedBy = "prenotazioni")
     private List<User> partecipanti;
 
-    public Event(String title, String description, LocalDate date, String location, int nrPlace) {
-        this.title = title;
-        this.description = description;
-        this.date = date;
-        this.location = location;
-        this.nrPlace = nrPlace;
-        this.postiDisponibili = creaPosti(nrPlace);
-    }
+    public Event() {    }
     private static List<Integer> creaPosti(int posti){
         List<Integer> listaPosti = new ArrayList<>();
         for (int i = 0; i<= posti; i++){

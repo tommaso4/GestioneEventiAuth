@@ -13,7 +13,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity
 public class SecurityChain {
     @Autowired
     private JwtTools jwtTools;
@@ -28,9 +27,8 @@ public class SecurityChain {
         httpSecurity.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
         httpSecurity.authorizeHttpRequests(req-> req.requestMatchers("/auth/**").permitAll());
-        httpSecurity.authorizeHttpRequests(req-> req.requestMatchers("/worker/**").hasAuthority(Role.ADMIN.name()));
-        httpSecurity.authorizeHttpRequests(req-> req.requestMatchers("/device/**").permitAll());
+        httpSecurity.authorizeHttpRequests(req-> req.requestMatchers("/user/**").permitAll());
+        httpSecurity.authorizeHttpRequests(req-> req.requestMatchers("/event/**").hasAuthority(Role.ADMIN.name()));
         return httpSecurity.build();
     }
-
 }

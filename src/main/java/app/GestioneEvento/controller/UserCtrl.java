@@ -52,7 +52,7 @@ public class UserCtrl {
             return CustomResponse.failure(new NotFoundException("UserName/Password not found").getMessage(),HttpStatus.NOT_FOUND);
     }
 
-    @PatchMapping("/user/addEvent/{idEvent}{idUser}")
+    @PatchMapping("/user/addEvent/{idEvent}/{idUser}")
     public ResponseEntity<CustomResponse> saveEvent (@PathVariable int idEvent,@PathVariable int idUser){
         try{
             userSvc.saveEvent(idEvent,idUser);

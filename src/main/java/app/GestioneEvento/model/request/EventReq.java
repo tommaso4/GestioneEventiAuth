@@ -1,6 +1,8 @@
 package app.GestioneEvento.model.request;
 
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -11,10 +13,10 @@ public class EventReq {
     private String title;
     @NotBlank(message = "description required")
     private String description;
-    @NotBlank(message = "date required")
+    @NotNull(message = "date required")
     private LocalDate date;
     @NotBlank(message = "location required")
     private String location;
-    @NotBlank(message = "nrPlace required")
-    private int nrPlace;
+    @Min(3)
+    private Integer nrPlace;
 }

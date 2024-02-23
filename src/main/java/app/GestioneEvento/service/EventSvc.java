@@ -7,17 +7,22 @@ import app.GestioneEvento.repository.EventRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLOutput;
+import java.util.SortedMap;
+
 @Service
-public class EvenSvc {
+public class EventSvc {
     @Autowired
     private EventRepo eventRepo;
 
     public Event saveEvent (EventReq eventReq){
-        Event event = new Event(eventReq.getTitle(),
-                eventReq.getDescription(),
-                eventReq.getDate(),
-                eventReq.getLocation(),
-                eventReq.getNrPlace());
+        Event event = new Event();
+        System.out.println(eventReq.getNrPlace());
+        event.setTitle(eventReq.getTitle());
+        event.setDescription(eventReq.getDescription());
+        event.setLocation(eventReq.getLocation());
+        event.setDate(eventReq.getDate());
+        event.setNrPlace(eventReq.getNrPlace());
         return eventRepo.save(event);
     }
 
